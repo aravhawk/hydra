@@ -1,0 +1,47 @@
+[project]
+name = "hydra-ai-security"
+version = "0.1.0"
+description = "AI security platform — continuous adversarial testing with NVIDIA AI safety ecosystem"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = [
+    "openai>=1.40.0",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "rich>=13.0",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.5",
+]
+guardrails = [
+    "nemoguardrails[openai]>=0.20.0",
+]
+hardening = [
+    "unsloth>=2025.3",
+    "torch>=2.0",
+    "trl>=0.12",
+    "datasets>=3.0",
+    "peft>=0.14",
+    "accelerate>=1.0",
+    "bitsandbytes>=0.44",
+    "mamba-ssm>=2.0",
+    "causal-conv1d>=1.2",
+]
+
+[project.scripts]
+hydra = "hydra.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["hydra*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
